@@ -1,0 +1,13 @@
+body {
+	background-color: #000000;
+}
+
+#form {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:284px;
+	height:210px;
+	margin-left:-142px;
+	margin-top:-105px;	
+}

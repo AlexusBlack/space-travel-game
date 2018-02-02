@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SpaceTravel</title>
+<link type="text/css" href="css/smoothness/jquery-ui-1.8.12.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+	<script src="js/jquery-ui-1.8.12.custom.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/jquery.md5.js"></script>
+	<script src="js/jquery.imgpreload.min.js"></script>	
+	<script>
+		var anim_coord = new Array();
+		var interval;
+		
+		function tic(name) {
+			var x=parseInt(anim_coord[name+"-x"]);
+			var d=parseInt(anim_coord[name+"-d"]);	var s=parseInt(anim_coord[name+"-s"])-1;		
+			x+=d; if(x>=d*s) x=0;
+			$("."+name).css("backgroundPosition","-"+x+"px 0px");
+			anim_coord[name+"-x"]=x;
+		}
+		function cmodel() {
+			var value=$("#model").attr("value");
+			if(value==0) {
+				$(".anim").attr("model","vmodels/dip3.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","110");				
+			} else if(value==1) {
+				$(".anim").attr("model","vmodels/tra2.png");
+				$(".anim").attr("side","129");
+				$(".anim").attr("size","128");
+			} else if(value==2) {
+				$(".anim").attr("model","vmodels/ran2.png");
+				$(".anim").attr("side","134");
+				$(".anim").attr("size","128");
+			} else if(value==3) {
+				$(".anim").attr("model","vmodels/rok2.png");
+				$(".anim").attr("side","46");
+				$(".anim").attr("size","128");
+			} else if(value==4) {
+				$(".anim").attr("model","vmodels/earth.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","70");
+			} else if(value==5) {
+				$(".anim").attr("model","vmodels/mercury.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","40");
+			} else if(value==6) {
+				$(".anim").attr("model","vmodels/venus.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","70");
+			} else if(value==7) {
+				$(".anim").attr("model","vmodels/mars.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","50");
+			} else if(value==8) {
+				$(".anim").attr("model","vmodels/saturn.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","190");
+			} else if(value==9) {
+				$(".anim").attr("model","vmodels/neptune.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","105");
+			} else if(value==10) {
+				$(".anim").attr("model","vmodels/jupiter.png");
+				$(".anim").attr("side","101");
+				$(".anim").attr("size","140");
+			} else if(value==11) {
+				$(".anim").attr("model","vmodels/sun.png");
+				$(".anim").attr("side","145");
+				$(".anim").attr("size","200");
+			} else if(value==12) {
+				$(".anim").attr("model","vmodels/etra.png");
+				$(".anim").attr("side","144");
+				$(".anim").attr("size","180");
+			} else if(value==13) {
+				$(".anim").attr("model","vmodels/ewar.png");
+				$(".anim").attr("side","144");
+				$(".anim").attr("size","115");
+			} else if(value==14) {
+				$(".anim").attr("model","vmodels/escout.png");
+				$(".anim").attr("side","145");
+				$(".anim").attr("size","105");				
+			} else if(value==15) {
+				$(".anim").attr("model","vmodels/warship.png");
+				$(".anim").attr("side","145");
+				$(".anim").attr("size","140");
+			} else if(value==16) {
+				$(".anim").attr("model","vmodels/base-cut.png");
+				$(".anim").attr("side","150");
+				$(".anim").attr("size","180");	
+			} else if(value==17) {
+				$(".anim").attr("model","vmodels/expl.png");
+				$(".anim").attr("side","88");
+				$(".anim").attr("size","150");	
+			}
+			clearInterval(interval);
+			STanim("anim");
+			interval=window.setInterval("tic('anim')", 100);
+		}
+	function STanim(name) {
+		$("."+name).css("background","url("+$("."+name).attr("model")+") no-repeat 0 0");
+		$("."+name).css("width",$("."+name).attr("size"));
+		$("."+name).css("height",$("."+name).attr("size"));
+		$("."+name).css("backgroundPosition","0px 0px");
+		anim_coord[name+"-x"]=0;
+		anim_coord[name+"-d"]=$("."+name).attr("size");		anim_coord[name+"-s"]=$("."+name).attr("side");
+			
+	}
+	function init() {
+		$( "#progressbar" ).progressbar({
+			value: 0
+		});
+		loader();		
+		STanim("anim");
+		interval=window.setInterval("tic('anim')", 100);
+
+		$( "#size" ).slider({
+			min:0,
+			max:3,
+			step:0.3,
+			range:'min',
+			slide: function(event, ui) {
+				$(".anim").css("zoom",$("#size" ).slider( "option", "value" ));
+				$(".anim").css("-moz-transform","scale("+$("#size" ).slider( "option", "value" )+")");
+				
+			}
+		});
+		$( "#angle" ).slider({
+			min:0,
+			max:360,
+			range:'min',
+			slide: function(event, ui) {
+				$(".anim").css("-moz-transform","rotate("+$("#angle" ).slider( "option", "value" )+"deg)");
+				$(".anim").css("-o-transform","rotate("+$("#angle" ).slider( "option", "value" )+"deg)");
+				$(".anim").css("-webkit-transform","rotate("+$("#angle" ).slider( "option", "value" )+"deg)");
+				$(".anim").css("-ms-transform","rotate("+$("#angle" ).slider( "option", "value" )+"deg)");
+				$(".anim").css("transform","rotate("+$("#angle" ).slider( "option", "value" )+"deg)");
+				//$(".anim").css("zoom","1");			
+			}
+		});
+		$( "#speed" ).slider({
+			min:1,
+			max:500,
+			range:'min',
+			slide: function(event, ui) {
+				clearInterval(interval);
+				interval=window.setInterval("tic('anim')", parseInt($("#speed" ).slider( "option", "value" )));
+			}
+		});
+		
+	}
+	
+	function loader() {
+		var img_to_load=new Array(
+			"vmodels/dip3.png",
+			"vmodels/earth.png",
+			"vmodels/jupiter.png",
+			"vmodels/mars.png",
+			"vmodels/mercury.png",
+			"vmodels/neptune.png",
+			"vmodels/ran2.png",
+			"vmodels/rok2.png",
+			"vmodels/saturn.png",
+			"vmodels/tra2.png",
+			"vmodels/venus.png",
+			"vmodels/sun.png",
+			"vmodels/etra.png",
+			"vmodels/ewar.png",
+			"vmodels/escout.png",			
+			"vmodels/warship.png",
+			"vmodels/base-cut.png",
+			"vmodels/expl.png"
+		);
+		var loaded_count=0;
+			$.imgpreload(img_to_load,
+{
+	each: function() {
+		loaded_count++;
+		$("#progressbar" ).progressbar( "option", "value", 100*(loaded_count/img_to_load.length));
+		$("#test" ).html(img_to_load[loaded_count]);
+	},
+	all: function() {
+		$("#test" ).html("");
+		$("#progressbar" ).progressbar("destroy");
+	}
+});
+	}
+	
+	</script>
+	<style>
+	*  {
+		padding: 0px;
+		margin: 0px;
+	}
+	#progressbar {
+		width: 600px;
+	}
+	</style>
+</head>
+<body onload='init();' bgcolor="#000000" background="bg/2.jpg">
+<center>
+	<div id="progressbar"></div>
+	<div id="test" style="color: #ffffff"></div>
+	<font color="#ffffff">SpaceTravel просмотрщик анимации</font>
+	<table border=1 width=600 height=400 id="main_table">
+		<tr>
+			<td width=250>
+				
+				<center><div class="anim" size="110" model="vmodels/dip3.png" side="101"></div></center>
+				
+				</td>
+			<td bgcolor="#000000" style="color: #ffffff;padding: 10px;">
+				Модель<br>
+				<select id="model">
+				<option value='0'>Дипломат</option>
+				<option value='2'>Рейнджер</option>
+				<option value='1'>Торговец</option>	
+				<option value='3'>Ракета</option>
+				<option value='4'>Земля</option>
+				<option value='5'>Меркурий</option>
+				<option value='6'>Венера</option>
+				<option value='7'>Марс</option>
+				<option value='8'>Сатурн</option>
+				<option value='9'>Нептун</option>
+				<option value='10'>Юпитер</option>
+				<option value='11'>Солнце</option>	
+				<option value='12'>Враг №1</option>
+				<option value='13'>Враг №2</option>
+				<option value='14'>Враг №3</option>				
+				<option value='15'>Военный</option>	
+				<option value='16'>База</option>	
+				<option value='17'>Взрыв</option>	
+								
+				</select><input type='button' value='Переключить' onclick='cmodel()'><br>
+				Размер<div id="size"></div><br>
+				Угол<div id="angle"></div><br>
+				Скорость анимации<div id="speed"></div><br>
+				
+			</td>
+		</tr>
+	</table>
+</center>
+</body>	
+</html>

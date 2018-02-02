@@ -1,0 +1,225 @@
+<html>
+	<head>
+	<META http-equiv=Content-Type content="text/html; charset=utf-8">
+	<title>Земля - ReCoalition</title>
+	<link rel="stylesheet" type="text/css" href="css/planet.css" />
+	<script type="text/javascript" src="js/iface.js"></script>
+	<script>
+	db = openDatabase("ReCoalition", "0.01", "ReCoalitionDB", 20000);
+	var PlayerName;
+
+	db.transaction(function(tx) {
+		tx.executeSql("SELECT * FROM ship WHERE id=0", [], function(tx, result) {
+			PlayerName=result.rows.item(0)['name'];
+		});
+	});
+	/*----------Параметры окна--------------------------*/
+	var wwidth=(window.innerWidth)?window.innerWidth: //Ширина
+    ((document.all)?document.body.offsetWidth:null); 
+	var wheight=(window.innerHeight)?window.innerHeight: 
+    ((document.all)?document.body.offsetHeight:null); //Высота
+    
+    /*----Предзагрузка кнопок---*/
+    var MenuD = new Image();
+    var MenuA = new Image();
+    var ShipD = new Image();
+    var ShipA = new Image();
+    var RankD = new Image();
+    var RankA = new Image();
+    var GiperD = new Image();
+    var GiperA = new Image();
+    var GalD = new Image();
+    var GalA = new Image();
+    
+    MenuD.src="img/iface/2MenuD.png";
+    MenuA.src="img/iface/2MenuA.png";
+    GiperD.src="img/iface/2TurnD.png";
+    GiperA.src="img/iface/2TurnA.png";
+    ShipD.src="img/iface/2ShipD.png";
+    ShipA.src="img/iface/2ShipA.png";
+    RankD.src="img/iface/2RatingD.png";
+    RankA.src="img/iface/2RatingA.png";
+    GalD.src="img/iface/2GalD.png";
+    GalA.src="img/iface/2GalA.png";
+    
+    var GovD = new Image();
+    var GovA = new Image();
+    var GoodsD = new Image();
+    var GoodsA = new Image();
+    var ShopD = new Image();
+    var ShopA = new Image();
+    var InfoD = new Image();
+    var InfoA = new Image();
+    var HangarD = new Image();
+    var HangarA = new Image();
+    var HangarCloseD = new Image();
+    var HangarCloseA = new Image();
+    var HangarFuelD = new Image();
+    var HangarFuelA = new Image();
+    var HangarRepairD = new Image();
+    var HangarRepairA = new Image();
+    var HangarOutD = new Image();
+    var HangarOutA = new Image();
+    
+    
+    GovD.src="img/iface/1GovD.png";
+    GovA.src="img/iface/1GovA.png";
+    GoodsD.src="img/iface/1GoodsD.png";
+    GoodsA.src="img/iface/1GoodsA.png";
+    ShopD.src="img/iface/1ShopD.png";
+    ShopA.src="img/iface/1ShopA.png";
+    InfoD.src="img/iface/1InfoD.png";
+    InfoA.src="img/iface/1InfoA.png";
+    HangarD.src="img/iface/1HangarD.png";
+    HangarA.src="img/iface/1HangarA.png";
+    HangarCloseD.src="img/iface/1CloseD.png";
+    HangarCloseA.src="img/iface/1CloseA.png";
+    HangarFuelD.src="img/iface/1FuelD.png";
+    HangarFuelA.src="img/iface/1FuelA.png";
+    HangarRepairD.src="img/iface/1RepairD.png";
+    HangarRepairA.src="img/iface/1RepairA.png";
+    HangarOutD.src="img/iface/1TakeOffD.png";
+    HangarOutA.src="img/iface/1TakeOffA.png";
+    
+    var MainBG = new Image();
+    var GovBG = new Image();
+    
+    MainBG.src="images/1People.png";
+    GovBG.src="img/iface/1PeopleBG.png";
+    
+    function ShowGov() {
+		if(parseInt(document.getElementById('GovMenu').style.left) == -1000) {
+			document.getElementById('GovMenu').style.left=0;
+			document.getElementById('GovMenu').style.top=0;
+			document.getElementById('GovMenu2').style.left=9;
+			document.getElementById('GovMenu2').style.top=332;
+			
+			document.getElementById('GovMan').style.left=wwidth/2;
+			document.getElementById('GovMan').style.top=wheight-526;
+			
+			document.getElementById('GovText').style.left=10;
+			document.getElementById('GovText').style.top=50;
+			
+			document.getElementById('GovButtons').style.left=10;
+			document.getElementById('GovButtons').style.top=340;
+			
+			document.getElementById('bgimg').src=GovBG.src;
+			document.getElementById('PName').innerHTML=PlayerName;
+		} else {
+			document.getElementById('GovMenu').style.left=-1000;
+			document.getElementById('GovMenu').style.top=-1000;
+			document.getElementById('GovMenu2').style.left=-1000;
+			document.getElementById('GovMenu2').style.top=-1000;
+			
+			document.getElementById('GovMan').style.left=-1000;
+			document.getElementById('GovMan').style.top=-1000;
+			
+			document.getElementById('GovText').style.left=-1000;
+			document.getElementById('GovText').style.top=-1000;
+			
+			document.getElementById('GovButtons').style.left=-1000;
+			document.getElementById('GovButtons').style.top=-1000;
+			
+			document.getElementById('bgimg').src=MainBG.src;
+		}
+	
+	}
+    
+    function GetOut() {
+		document.location.href = "solar.html";
+	}
+	function ShowHangar() {
+		if(parseInt(document.getElementById('Hangar0').style.left) == -1000) {
+			document.getElementById('Hangar0').style.left=wwidth/2-243;
+			document.getElementById('Hangar0').style.top=wheight/3;
+			document.getElementById('Hangar1').style.left=wwidth/2-118;
+			document.getElementById('Hangar1').style.top=wheight-wheight/3;
+			document.getElementById('HangarClose').style.left=wwidth/2+53.5;
+			document.getElementById('HangarClose').style.top=wheight-wheight/3+19;
+			document.getElementById('HangarFuel').style.left=wwidth/2-104;
+			document.getElementById('HangarFuel').style.top=wheight-wheight/3+10;
+			document.getElementById('HangarRepair').style.left=wwidth/2-57;
+			document.getElementById('HangarRepair').style.top=wheight-wheight/3+10;
+			document.getElementById('HangarOut').style.left=wwidth/2-10;
+			document.getElementById('HangarOut').style.top=wheight-wheight/3+10;
+			
+		} else {
+			document.getElementById('Hangar0').style.left=-1000;
+			document.getElementById('Hangar0').style.top=-1000;
+			document.getElementById('Hangar1').style.left=-1000;
+			document.getElementById('Hangar1').style.top=-1000;
+			document.getElementById('HangarClose').style.left=-1000;
+			document.getElementById('HangarClose').style.top=-1000;
+			document.getElementById('HangarFuel').style.left=-1000;
+			document.getElementById('HangarFuel').style.top=-1000;
+			document.getElementById('HangarRepair').style.left=-1000;
+			document.getElementById('HangarRepair').style.top=-1000;
+			document.getElementById('HangarOut').style.left=-1000;
+			document.getElementById('HangarOut').style.top=-1000;
+			
+		}
+	}
+	</script>
+	</head>
+	<body bgcolor="#000000" onload="Iface(1);">
+	<img id="bgimg" src="images/1People.png" style="position: absolute; left: 0px; top: 0px; z-index: 0;" width="100%" height="100%">
+	
+	<!---Интерфейс-->
+	<img id="panel0" src="img/iface/panel0.png" style="position: fixed; left: 0px; top: 50px; z-index: 100;" width="100%">
+	<img id="menubutton" src="img/iface/2MenuD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeMenuButton(1);" onmouseout="ChangeMenuButton(0);">
+	<img id="giperbutton" src="img/iface/2TurnD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeGiperButton(1);" onmouseout="ChangeGiperButton(0);">
+	<img id="shipbutton" src="img/iface/2ShipD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeShipButton(1);" onmouseout="ChangeShipButton(0);">
+	<img id="rankbutton" src="img/iface/2RatingD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeRankButton(1);" onmouseout="ChangeRankButton(0);">
+	<img id="galbutton" src="img/iface/2GalD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeGalButton(1);" onmouseout="ChangeGalButton(0);" onclick="ShowGalaxyMap();">
+	
+	<img id="PlanetPanel" src="img/iface/1Planet.png" style="position: fixed; left: 0px; top: 50px; z-index: 100;">
+	<img id="govbutton" src="img/iface/1GovD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeGovButton(1);" onmouseout="ChangeGovButton(0);" onclick="ShowGov();">
+	<img id="goodsbutton" src="img/iface/1GoodsD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeGoodsButton(1);" onmouseout="ChangeGoodsButton(0);" onclick="ShowGalaxyMap();">
+	<img id="shopbutton" src="img/iface/1ShopD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeShopButton(1);" onmouseout="ChangeShopButton(0);" onclick="ShowGalaxyMap();">
+	<img id="infobutton" src="img/iface/1InfoD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeInfoButton(1);" onmouseout="ChangeInfoButton(0);" onclick="ShowGalaxyMap();">
+	<img id="hangarbutton" src="img/iface/1HangarD.png" style="position: fixed; left: 0px; top: 7px; z-index: 100;" onmouseover="ChangeHangarButton(1);" onmouseout="ChangeHangarButton(0);" onclick="ShowHangar();">
+	
+	<!--Правительство-->
+	<img id="GovMenu" src="img/iface/1TWin.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="GovMenu2" src="img/iface/1TWinB.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="GovMan" src="img/iface/1PeopleAnim0.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 99;">
+	<div id="GovText" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<table border=0 width="275" height="275">
+			<tr>
+			<td> <div id="PName"></div>Вы находитесь на Земле, надеюсь вы уже прониклись уважением к родине нашей расы?<br>
+			Сейчас у Коалиции трудные времена из-за дестабилизации гипер-пространства мы имеем связь только с двумя системами Кефрон и Завия, что плохо сказывается 
+			на межзвёздной торговле. Но ведь это не остановит такого предприимчивого рейнджера? 
+			</div></td>
+			</tr>
+			<tr><td height="100%"></td></tr>
+	</table>
+	</div>
+	<div id="GovButtons" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<table border=0 width="275" height="100">
+			<tr>
+			<td><img src="img/iface/2Answer.png"><a href="javascript:false();" onclick="ShowGov();">Пока</a></td>
+			</tr>
+			<tr><td height="100%"></td></tr>
+	</table>
+	</div>
+	<!--Карта галактики-->
+	<img id="GalaxyMapBG" src="img/iface/2BG.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;" width=770 height=540>
+	<img id="GalaxyMap" src="img/iface/2Panel.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="MapStar0" src="img/mapStar.gif" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="MapStar1" src="img/mapStar.gif" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="MapStar2" src="img/mapStar.gif" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<div id="Sector0" style="position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #7d7b72; font-family: arial, sans-serif;font-style: bold;font-size: 150%;">Карагон</div>
+	<div id="System0" style="position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;">Солнце</div>
+	<div id="System1" style="position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;">Завия</div>
+	<div id="System2" style="position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;">Кефрон</div>
+	<!--Ангар-->
+	<img id="Hangar0" src="img/iface/1open.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="Hangar1" src="img/iface/1Bottom.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;">
+	<img id="HangarClose" src="img/iface/1CloseD.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;" onmouseover="ChangeHangarClose(1);" onmouseout="ChangeHangarClose(0);" onclick="ShowHangar();">
+	<img id="HangarFuel" src="img/iface/1FuelD.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;" onmouseover="ChangeHangarFuel(1);" onmouseout="ChangeHangarFuel(0);" onclick="GetFuel();">
+	<img id="HangarRepair" src="img/iface/1RepairD.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;" onmouseover="ChangeHangarRepair(1);" onmouseout="ChangeHangarRepair(0);" onclick="MakeRepair();">
+	<img id="HangarOut" src="img/iface/1TakeOffD.png" style="position: fixed; left: -1000px; top: -1000px; z-index: 100;" onmouseover="ChangeHangarOut(1);" onmouseout="ChangeHangarOut(0);" onclick="GetOut();">
+	
+	
+	</body>
+</html>

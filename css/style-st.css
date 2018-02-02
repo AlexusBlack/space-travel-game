@@ -1,0 +1,235 @@
+#jquery-stickers {
+	z-index:101;
+}
+.stick {	margin:5px;
+	padding:15px;
+	width:200px;
+	z-index:101;
+}
+.exit {	background:url('exit.png') no-repeat;
+	width:16px;
+	height:16px;
+	float:right;
+	margin:-5px -5px 0 0;
+	cursor:pointer;
+	z-index:101;}
+.classic {	border:1px solid #A7CD10;
+	background-color:#E1FAB8;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	z-index:101;}
+.classic.error {
+	border:1px solid #E2365C;
+	background-color:#F7C8D2;
+	z-index:101;
+}
+.opacity {
+	background:url('bg.png');
+	color:#F4F4F4;
+}
+.next {
+	background:url('bg1.png') repeat-x #FEF6BF;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+.last {
+	background-color:#CBECFA;
+	border:1px solid #15A6E3;
+}
+.click-ex {	width:50px;
+	height:20px;
+	border:1px solid #626262;
+	background:url('pointer.gif') no-repeat left center #7A7A7A;
+	color:#F4F4F4;
+	float:left;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding-left:25px;
+	padding-top:10px;
+	margin-right:10px;
+	cursor:pointer;
+}
+.ex pre {	width:80%;}
+
+/*-------------------------------------------------*/
+
+#content {
+		position: absolute; 
+		left: 0px; 
+		top: 0px; 
+		z-index: 0;
+		width: 6000px;	
+		height: 6000px;				
+	}
+	*  {
+		padding: 0px;
+		margin: 0px;
+	}
+	#progressbar {
+		width: 600px;
+	}
+	body {
+		background-color: #000000;
+		overflow: hidden;
+	}
+	#menu_bottom {
+		position: fixed; 
+		left: 0px; 
+		bottom: 0px; 
+		z-index: 100;
+		width: 100%;
+		height: 75px;
+		/*background-color: #c4c4c4;*/
+	}
+	#player_weapon , #weapon_status , #player_ship , #ship_status  {
+		width: 200px;
+		display: block; 
+		float: left;
+		align: center;
+		text-align: center;
+		font-size: 20px;
+	}
+	#target_stuct , #target_stuct_max {
+		display: block; 
+		float: left;
+	}
+	#target {
+		position: fixed; 
+		left: 0px; 
+		top: 0px;
+		
+		background:url(../iface/info.png) no-repeat;
+		width: 210px;
+		height: 130px; 
+		
+		z-index: 100;
+		padding:25px;
+		visibility: hidden;
+		color:#6db6d5;
+	}
+	#radar {
+		position: fixed; 
+		right: 0px; 
+		top: 0px;
+		
+		width: 130px;
+		height: 150px; 
+		background:url(../iface/radar.png) no-repeat;
+		z-index: 100;
+		
+	}
+	#player_money{
+		color:#ffffff;
+		margin-top:125px;
+		margin-left:15px;
+	}
+	body {
+		background-image:url(../bg/2.jpg);
+		background-attachment: fixed;
+		background-position: 0px 0px;
+	}
+	table{
+border:0px; /* border="0" */
+border-collapse:collapse; /* cellspacing="0" */
+}
+	#bleft{
+		background:url(../iface/bleft.png) no-repeat;
+		background-position:left bottom;
+		width:59px;
+	}
+	#bright{
+		background:url(../iface/bright.png) no-repeat;
+		background-position:right bottom;
+		width:43px;
+	}
+	#weapon_status, #ship_status {
+		 font-size: 10px;
+	}
+	.bspace {
+		background:url(../iface/bspace.png);
+		background-repeat: repeat-x;
+		background-position:right bottom;
+		vertical-align: bottom;
+	}
+	.button {
+		background:url(../iface/button.png) no-repeat;
+		background-position:right bottom;
+		width:115px;
+		vertical-align: middle;
+		text-align: center;
+		padding-top: 18px;
+	}
+#start_screen{
+	position: fixed; 
+	background:url(../bg/2.jpg);
+	right: 0px; 
+	top: 0px;
+	width:100%;
+	height:100%;
+	background-color: #000000;
+	z-index:102;
+}
+#start_table{
+	background:url(../bg/sun0144.png) no-repeat;
+	background-position:right bottom;
+	width: 100%;
+	height:100%;
+}
+#history{
+	width:600px;
+	height:500px;
+	background:url(../iface/history.png) no-repeat;
+}
+#hcontent{
+	height:370px;
+	
+}
+#harea{
+	background-color: #f8f8e1;
+	border: 0px;
+	resize: none;
+	margin-top:20px;
+}
+#dialog_area{
+	background-color: #f8f8e1;
+	border: 0px;
+	resize: none;
+	margin-left:18px;
+	margin-top:18px;
+}
+
+#start_button{
+	visibility: hidden;
+	background:url(../iface/start.png) no-repeat;
+	width:88px;
+	height:88px;
+}
+#dialog{
+	visibility: hidden;
+	position: fixed; 
+	width:100%;
+	height:100%;
+	z-index:100;
+}
+#dialog_table{
+	width:600px;
+	height:500px;
+	background:url(../iface/dialog.png) no-repeat;
+}
+#gov_button{
+	margin-top:38px;
+	margin-left:31px;
+}
+#ship_button{	
+	margin-left:28px;
+}
+#esc_button{
+	margin-bottom:28px;
+	margin-left:28px;
+}
+#dialog_answers{
+	margin-left:40px;
+}

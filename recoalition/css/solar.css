@@ -1,0 +1,151 @@
+body {
+	background-color: #000000;
+	overflow: hidden;
+}
+
+#background {
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	z-index: 0;
+	width: 4000px;
+}
+
+#sol {
+	position:absolute;
+	left:1750px;
+	top:1750px;
+	width:500px;
+	height:500px;
+	z-index:1;
+	background-position: 0px 0px;
+	background: url("../img/StarSolar.png")no-repeat;
+}
+
+#player0 {
+	position: absolute; 
+	left: 300px; 
+	top: 300px; 
+	z-index: 2;
+	width: 55px;
+	height: 55px;
+	background-position: 0px 0px;
+	background: url("../img/PeopleRenger.png")no-repeat;
+}
+
+#planet0 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 93px;
+}
+#planet1 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 108px;
+}
+#planet2 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 123px;
+}
+#planet3 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 108px;
+}
+#planet4 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 153px;
+}
+#planet5 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 137px;
+}
+#planet6 {
+	position: absolute; left: 500px; top: 500px; z-index: 1;
+	width: 123px;
+}
+
+#panel0 {
+	position: fixed; left: 0px; top: 50px; z-index: 100;
+	width: 100%;
+}
+#rad0 {
+	position: fixed; left: 0px; top: 0px; z-index: 100;
+	width: 160px;
+}
+#rad1 {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+	width: 150px;
+}
+#menubutton {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+}
+#giperbutton {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+}
+#GalaxyMapBG {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100;
+	width: 770px;
+	height: 540px;
+}
+#GalaxyMap {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100;
+}
+#MapStar0 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100;
+}
+#MapStar1 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100;
+}
+#MapStar2 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100;
+}
+#Sector0 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #7d7b72; font-family: arial, sans-serif;font-style: bold;font-size: 150%;
+}
+#System0 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;
+}
+#System1 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;
+}
+#System2 {
+	position: fixed; left: -1000px; top: -1000px; z-index: 100; color: #01a4c4; font-family: arial, sans-serif;font-style: bold;
+}
+
+#shipbutton {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+}
+#rankbutton {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+}
+#galbutton {
+	position: fixed; left: 0px; top: 7px; z-index: 100;
+}
+
+#radsol {
+	position: fixed; left: 0px; top: 77px; z-index: 101;
+}
+#radp0 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp1 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp2 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp3 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp4 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp5 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+#radp6 {
+	position: fixed; left: 0px; top: 0px; z-index: 101;
+}
+
+#radpl0 {
+	position: fixed; left: -50px; top: -50px; z-index: 101;
+	width: 5px;
+}

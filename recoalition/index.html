@@ -1,0 +1,82 @@
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<title>ReCoalition</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script>
+	db = openDatabase("ReCoalition", "0.01", "ReCoalitionDB", 20000);
+	if(!db){alert("Failed to connect to database.");}
+	/*function setCookie (name, value, expires, path, domain, secure) {
+		document.cookie = name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+	}*/
+	function light() {
+		document.getElementById('enterbut').src="images/ok1.png";
+	}
+	function shadow() {
+		document.getElementById('enterbut').src="images/ok0.png";
+	}
+	var shipsStats="id, system, name, hp, x, y, rot, speed, manevr, race, type, stage, target, counter";
+	var planetsStats="id, system, name, dist, rad, speed, x, y";
+	function CreateData() {
+		db.transaction(function(tx) {
+			//Ships
+				tx.executeSql("CREATE TABLE ship ("+shipsStats+")", [], null, null);
+				
+				tx.executeSql("INSERT INTO ship ("+shipsStats+") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+				[0,0,document.getElementById('nickname').value,300,1000,1000,0,5,3,0,0,0,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO ship ("+shipsStats+") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+				[1,0,"trader1",400,Math.random()*4000,Math.random()*4000,0,3,2,0,2,0,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO ship ("+shipsStats+") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+				[2,0,"trader2",400,Math.random()*4000,Math.random()*4000,0,3,2,0,2,0,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO ship ("+shipsStats+") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+				[3,0,"diplomat1",250,Math.random()*4000,Math.random()*4000,0,4,2,0,1,0,0,0], null, null);
+			//Planets
+				tx.executeSql("CREATE TABLE planet ("+planetsStats+")", [], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[0,0,"Меркурий",230,Math.random()*360,0.17,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[1,0,"Венера",450,Math.random()*360,0.13,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[2,0,"Земля",600,Math.random()*360,0.1,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[3,0,"Марс",900,Math.random()*360,0.09,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[4,0,"Юпитер",1100,Math.random()*360,0.07,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[5,0,"Сатурн",1500,Math.random()*360,0.05,0,0], null, null);
+				
+				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
+				[6,0,"Нептун",1800,Math.random()*360,0.01,0,0], null, null);				
+		});
+	}
+	function Login() {
+		CreateData();
+		document.location.href = "solar.html";
+		return false;
+	}
+</script>
+</head>
+<body>
+<img src="images/Logo.png" style="position:absolute; top:20%; left:50%; z-index: 1;margin-left:-100px;margin-top:-100px;">
+<img src="images/1People.png" style="position: absolute; left: 0px; top: 0px; z-index: 0;" width="100%" height="100%">
+<table border=0 width=283 height=210 background="images/form.png" id="form">
+	<tr>
+		<td><center>Введите ник:<br><input type="text" id="nickname"><br><img src="images/ok0.png" id="enterbut" 
+		onmouseover="light();" onmouseout="shadow();" onclick="Login();"></center></td>
+	</tr>
+</table>
+</body>
+</html>

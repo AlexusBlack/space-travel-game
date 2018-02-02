@@ -1,0 +1,132 @@
+* {
+	margin:0;
+	padding:0;
+}
+body  {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background: #575757;
+	color: #ffffff;
+}
+a {
+	color:#87d735;
+	text-decoration:underline;
+}
+a:hover {
+	color:#87d735;
+	text-decoration:none;
+}
+h3 {
+	color:#ffe2a9;
+	font-size:24px;
+}
+b {
+	color:#ff5509;
+}
+#container { 
+	width: 892px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	background: #000;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+	border-left:4px solid #FFFFFF;
+	border-right:4px solid #FFFFFF;
+} 
+#header { 
+	padding: 0 10px 0 20px;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+	width:892px;
+	height:574px;
+	background:url(../images/headerBackground.jpg) left top no-repeat;
+} 
+#header h1 {
+	color:#fff2d1;
+	font-size:60px;
+}
+#header span {
+	color:#000000;
+}
+#header span a {
+	color:#000000;
+	text-decoration:underline;
+}
+#header span a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+#sidebar1 {
+	float: right; /* since this element is floated, a width must be given */
+	width: 255px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	padding: 15px 10px;
+}
+#mainContent { 
+	margin: 0 300px 0 0; /* the right margin on this div element creates the column down the right side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 10px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+} 
+#footer {
+	height:102px;
+	text-align:center;
+	background:url(../images/footerBackground.jpg) left top repeat-x;
+} 
+#footer p {
+	padding: 35px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+#footer a {
+	color:#000000;
+	text-decoration:underline;
+}
+#footer a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+/*begin menu*/
+#navcontainer {
+	padding-top:430px;
+}
+#navcontainer a {
+	font-size:36px;
+	color:#000000;
+	text-decoration:none;
+}
+#navcontainer a:hover {
+	font-size:36px;
+	color:#000000;
+	text-decoration:underline;
+}
+#navlist li {
+	display: inline;
+	list-style-type: none;
+	padding: 0 17px;
+}
+/*end menu*/
+.pics li {
+	list-style:none;
+	display:inline;
+	padding-right:20px;
+}
+.infoBlock {
+	padding-top:10px;
+}
+.infoTitle {
+	background:url(../images/titleBackground.jpg) left top no-repeat;
+	width:255px;
+	height:50px;
+}
+.infoTitle h2 {
+	padding:12px;
+}
+.infoBody {
+	background:url(../images/backgroundBody.jpg) left top no-repeat;
+	width:255px;
+}
+.infoBody p {
+	padding:12px;
+}
+.infoBody li {
+	list-style:none;
+	padding:3px 12px;
+}

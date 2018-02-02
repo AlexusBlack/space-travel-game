@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>SpaceTravelCanvas</title>
+<style>
+*{
+	margin: 0px 0px;
+	line-height: 1;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script>
+	var i=0;
+var ship=new Image();
+var ship2=new Image();
+
+ship.src="models/ran2-mini.png";
+ship2.src="vmodels/etra.png";
+
+function rad(fi) {
+	return fi * Math.PI / 180;
+}
+function set(id){alert(id);}
+window.onload=function() {
+	var tcanvas = $("canvas")[0];
+	var tctx = tcanvas.getContext('2d');
+	
+	shipID=InitAnim("test",ship,64,64,134,50,50,1,null);
+	enemyID=InitAnim("enemy",ship2,180,180,144,0,500,1,null);
+	
+	window.setInterval('PlayAnim();',100);
+}
+var anim=new Array();
+function Rotate(i,fi) {
+	anim[i].ctx.translate(anim[i].width/2,anim[i].height/2);
+	anim[i].ctx.rotate(fi * Math.PI / 180);
+	anim[i].ctx.translate(-anim[i].width/2,-anim[i].height/2);
+}
+function PlayAnim() {
+	for(i in anim) {
+		//alert(i);
+		anim[i].ctx.clearRect(0,0,anim[i].width*anim[i].size,anim[i].height*anim[i].size);
+		anim[i].ctx.drawImage(anim[i].model,anim[i].width*anim[i].i,0,anim[i].width,anim[i].height,0,0,anim[i].width*anim[i].size,anim[i].height*anim[i].size);
+		anim[i].i++;		
+		if(anim[i].i==anim[i].side) anim[i].i=0;
+	}
+}
+function InitAnim(id,model,w,h,side,x,y,size,eve,zi) {
+	$("#animation").append("<canvas id='"+id+"' width='"+w*size+"px' height='"+h*size+"px' onclick='"+eve+"(\""+id+"\");'></canvas>");
+	$("#"+id).css("position", "absolute");
+	$("#"+id).css("left", x+"px");
+	$("#"+id).css("top", y+"px");
+	$("#"+id).css("z-index", zi);
+	var canvas = $("#"+id)[0]; 
+	anim["a-"+id]={
+		"id":id,
+		"model":model,
+		"width":w,
+		"height":h,
+		"side":side,
+		"i":0,
+		"fi":0,
+		"size":size,
+		"ctx":canvas.getContext('2d')
+	};
+	return "a-"+id;
+}
+</script>
+</head>
+<body bgcolor="#000000">
+<canvas width="64" height="64" id="canv"></canvas>
+<div id="animation"></div>
+</body>
+</html>

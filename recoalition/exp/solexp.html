@@ -1,0 +1,39 @@
+<html>
+<head><title>solar experiment</title>
+<style type="text/css">
+#solar {
+	position:absolute;
+	left:200px;
+	top:200px;
+	width:500px;
+	height:500px;
+	z-index:0;
+	background-position: 0px 0px;
+	background: url("../img/StarSolar.png")no-repeat;
+}
+</style>
+<script>
+var solarx=0;
+var solary=0;
+var solarID;
+function AtlasAnimation(xsize, ysize, width, height, element) {
+	solarx-=width;
+	if(solary==(ysize*(-1)+height) && solarx==(xsize*(-1)+width)) {
+		solarx=0;
+		solary=0;
+	}
+	if(solarx==(xsize*(-1))) {
+		solarx=0;
+		solary-=height;
+	}
+	document.getElementById(element).style.backgroundPosition=solarx+"px "+solary+"px";
+}
+function InitAnimation() {
+	solarID=setInterval('AtlasAnimation(5000, 7500, 500, 500, "solar");', 70);
+}
+</script>
+</head>
+<body bgcolor="#000000" onload="InitAnimation();">
+<div id="solar"></div>
+</body>
+</html>

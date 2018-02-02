@@ -1,0 +1,265 @@
+<html>
+	<head>
+	<META http-equiv=Content-Type content="text/html; charset=utf-8">
+	<title>Солнце - ReCoalition</title>
+	<script type="text/javascript" src="js/display.js"></script>
+	<script type="text/javascript" src="js/iface.js"></script>
+	<script type="text/javascript" src="js/npc.js"></script>
+	<script type="text/javascript" src="js/missles.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/solar.css" />
+	<script>
+	db = openDatabase("ReCoalition", "0.01", "ReCoalitionDB", 20000);
+	if(!db){alert("Failed to connect to database.");}
+	/*----------Параметры окна--------------------------*/
+	var wwidth=(window.innerWidth)?window.innerWidth: //Ширина
+    ((document.all)?document.body.offsetWidth:null); 
+	var wheight=(window.innerHeight)?window.innerHeight: 
+    ((document.all)?document.body.offsetHeight:null); //Высота
+    
+    /*----Предзагрузка кнопок---*/
+    var MenuD = new Image();
+    var MenuA = new Image();
+    var ShipD = new Image();
+    var ShipA = new Image();
+    var RankD = new Image();
+    var RankA = new Image();
+    var GiperD = new Image();
+    var GiperA = new Image();
+    var GalD = new Image();
+    var GalA = new Image();
+    
+    MenuD.src="img/iface/2MenuD.png";
+    MenuA.src="img/iface/2MenuA.png";
+    GiperD.src="img/iface/2TurnD.png";
+    GiperA.src="img/iface/2TurnA.png";
+    ShipD.src="img/iface/2ShipD.png";
+    ShipA.src="img/iface/2ShipA.png";
+    RankD.src="img/iface/2RatingD.png";
+    RankA.src="img/iface/2RatingA.png";
+    GalD.src="img/iface/2GalD.png";
+    GalA.src="img/iface/2GalA.png";
+    
+    /*--------------Предзагрузка кораблей----------------*/
+    var PeopleR = new Image();
+    var PeopleD = new Image();
+    var PeopleT = new Image();
+    
+    PeopleR.src="img/ships/PeopleR.gif";
+    PeopleD.src="img/ships/PeopleD3.gif";
+    PeopleT.src="img/ships/PeopleT.gif";   
+    
+    /*--------------Предзагрузка снарядов--------------*/
+    var RocketS = new Image();
+    RocketS.src="img/missle.gif";
+    
+    
+    /*------------------Планеты-----------------------------*/
+    var planets = new Array();
+    
+	/*-----------Игроки-------------------------------*/
+	var OldPlayersCount=1;
+	var playersCount=4;	//Число игроков , включая обладателя клиента
+	var players = new Array();
+	
+	/*------------Получить Планеты-----------------------------*/
+    function GetPlanets() {
+		db.transaction(function(tx) {
+			tx.executeSql("SELECT * FROM planet WHERE system=0", [], function(tx, result) {
+				for(var i = 0; i < result.rows.length; i++) {
+					planets[i] = {
+						name : result.rows.item(i)['name'],//Название планеты
+						dist : result.rows.item(i)['dist'],//Дистанция от солнца
+						rad  : result.rows.item(i)['rad'],//угол планеты
+						speed: result.rows.item(i)['speed'],//скорость планеты
+						x    : result.rows.item(i)['x'],//координаты
+						y 	 : result.rows.item(i)['y']};//		планеты
+						
+				}
+				//----
+						Init();
+				}, null)}); 
+	}
+	/*-----------------------Получить корабли---------------------*/
+	function GetShips() {
+		db.transaction(function(tx) {
+			tx.executeSql("SELECT * FROM ship WHERE system=0", [], function(tx, result) {
+				var playersCount=result.rows.length;
+				for(var i = 0; i < result.rows.length; i++) {
+					players[i] = {
+						id     : result.rows.item(i)['id'],//идентификатор корабля
+						hp     : result.rows.item(i)['hp'],//Жизни корабля
+						name   : result.rows.item(i)['name'],//Название корабля
+						x      : result.rows.item(i)['x'],//координаты
+						y      : result.rows.item(i)['y'],//		корабля
+						rot    : result.rows.item(i)['rot'],//угол корабля
+						speed  : result.rows.item(i)['speed'],//скорость корабля
+						manevr : result.rows.item(i)['manevr'],//манёвренность корабля
+						race   : result.rows.item(i)['race'],//раса корабля
+						type   : result.rows.item(i)['type'],//тип корабля
+						stage  : result.rows.item(i)['stage'],//стадия ИИ
+						target : result.rows.item(i)['target'],//цель ИИ
+						counter: result.rows.item(i)['counter']};//счётчик ИИ
+						
+				}
+				//----
+						GetPlanets();
+						
+				}, null)});
+	}
+	//GetPlanets();
+	/*------------------Сохранить планеты------------------*/
+	function SavePlanets(pCount, planet) {		
+		db.transaction(function(tx) {
+			for(var i=0; i<pCount; i++) {
+				tx.executeSql("UPDATE planet SET rad="+planets[i].rad+" WHERE id="+i+"", [], function(tx, result) {
+						if(planet) document.location.href = planet+".html";
+				}, null);
+			}
+		});
+	}
+	/*--------------------Сохранить корабли-----------------*/
+	function SaveShips(cp,planet) {
+		db.transaction(function(tx) {
+			for(var i=0; i<playersCount; i++) {
+				tx.executeSql("UPDATE ship SET x="+players[i].x+", y="+players[i].y+", rot="+players[i].rot+", stage="+players[i].stage+", target="+players[i].target+", counter="+players[i].counter+" WHERE id="+i+"", [], function(tx, rusult) { //null, function(tx,error){alert(error);});
+					SavePlanets(cp,planet);
+				},null);
+			}
+		});
+	}	
+	
+	/*---------------Снаряды-------------------------*/
+	var MissleCount=0; //Число ракет в системе
+	var OldMissleCount=0;
+	var missles = new Array();
+	missles[0] = {type: 0, x: 0, y: 0, rot: 0, ouner: 0, suc: 0, counter: 0}; //suc - попадание?
+	
+	/*----------------Флаги-----------------*/	
+	var MoveUpFlag=0;
+	var MoveDownFlag=0;
+	var RotUpFlag=0;
+	var RotDownFlag=0;
+	var MissleFlag=0;
+	
+	/*-----------Переменные контроля анимации-----------*/
+	var AnimKol=2;
+	
+	var anim = new Array();
+	
+	var animx = new Array();
+	var animy = new Array();
+	var animID = new Array();
+	
+	animx[0]=0;
+	animy[0]=0;
+	
+	animx[1]=0;
+	animy[1]=0;
+		
+	/*----------------Анимационная функция, автор идеи Аватарчик, реализация Алексус-------------*/
+	function AtlasAnimation(xsize, ysize, width, height, element, animcount) {
+		animx[animcount]-=width;
+		if(animy[animcount]==(ysize*(-1)+height) && animx[animcount]==(xsize*(-1)+width)) {
+			animx[animcount]=0;
+			animy[animcount]=0;
+		}
+		if(animx[animcount]==(xsize*(-1))) {
+			animx[animcount]=0;
+			animy[animcount]-=height;
+		}
+		document.getElementById(element).style.backgroundPosition=animx[animcount]+"px "+animy[animcount]+"px";
+	}
+	/*--------------Инициализация анимации--------------*/
+	function InitAnimation() {
+		animID[0]=setInterval('AtlasAnimation(5000, 7500, 500, 500, "sol", 0);', 70);
+		animID[1]=setInterval('AtlasAnimation(550, 550, 55, 55, "player0", 1);', 70);
+	}
+	/*----------Автосохранение 30 секунд-----------------*/
+	function Save() {
+		//SavePlanets(7);
+		SaveShips(7,null);
+	}
+	
+	function DataInit() {
+		GetShips();
+	}
+	
+	function Init() {
+		Iface(0);
+		setInterval('Main()', 40);
+		SetShipsStats(0);
+		InitAnimation();
+		FocusOnPlayer();
+		setInterval('Save()', 30000);
+	}
+	
+	function EnterEarth() {
+		if(players[0].x>planets[2].x && players[0].x<planets[2].x+123 &&
+		   players[0].y>planets[2].y && players[0].y<planets[2].y+123) {
+			   //SavePlanets(7);
+			   SaveShips(7,"earth");
+			   //document.location.href = "earth.html";
+		}
+	}
+			
+	function Main() { // Главная функция, запускается с интервалом в 40 милесекунд
+		CheckFlags();
+		if( playersCount > 1 ) DisplayOtherShips();
+		if( MissleCount > 0 ) DisplayMissles();
+		//Объекты карты
+		DisplayPlanets();
+		//FocusOnPlayer();
+		UpdateRadar();
+	}		
+	</script>
+	</head>
+	<body onkeydown="SetFlag(1);" onkeyup="SetFlag(0);" onload="DataInit();">
+	<img id="background" src="img/bg00.png">
+	<div id="sol"></div>
+	<div id="player0"></div>
+	<!--<img id="player0" src="img/PeopleR.gif">-->
+	<div id='players'></div>
+		<img id="planet0" src="img/planets/mercury.gif" >
+		<img id="planet1" src="img/planets/venus.gif" >
+		<img id="planet2" src="img/planets/earth.gif" onclick="EnterEarth();">
+		<img id="planet3" src="img/planets/mars.gif" >
+		<img id="planet4" src="img/planets/jupiter.gif" >
+		<img id="planet5" src="img/planets/saturn.gif" >
+		<img id="planet6" src="img/planets/neptune.gif" >
+	<div id='missles'></div>
+	<!---Интерфейс-->
+	<img id="panel0" src="img/iface/panel0.png" >
+	<img id="rad0" src="img/iface/rad0.png">
+	<img id="rad1" src="img/iface/rad1.jpg">
+	<img id="menubutton" src="img/iface/2MenuD.png" onmouseover="ChangeMenuButton(1);" onmouseout="ChangeMenuButton(0);">
+	<img id="giperbutton" src="img/iface/2TurnD.png" onmouseover="ChangeGiperButton(1);" onmouseout="ChangeGiperButton(0);">
+	<!--Карта галактики-->
+	<img id="GalaxyMapBG" src="img/iface/2BG.png" >
+	<img id="GalaxyMap" src="img/iface/2Panel.png">
+	<img id="MapStar0" src="img/mapStar.gif" >
+	<img id="MapStar1" src="img/mapStar.gif" >
+	<img id="MapStar2" src="img/mapStar.gif" >
+	<div id="Sector0" >Карагон</div>
+	<div id="System0" >Солнце</div>
+	<div id="System1" >Завия</div>
+	<div id="System2" >Кефрон</div>
+	
+	<!--конец карты--->
+	<img id="shipbutton" src="img/iface/2ShipD.png" onmouseover="ChangeShipButton(1);" onmouseout="ChangeShipButton(0);">
+	<img id="rankbutton" src="img/iface/2RatingD.png" onmouseover="ChangeRankButton(1);" onmouseout="ChangeRankButton(0);">
+	<img id="galbutton" src="img/iface/2GalD.png" onmouseover="ChangeGalButton(1);" onmouseout="ChangeGalButton(0);" onclick="ShowGalaxyMap();">
+	<!--Планеты для радара-->
+	<img id="radsol" src="img/sol.png" >
+	<img id="radp0" src="img/Map0.png" >
+	<img id="radp1" src="img/MapPeople.png" >
+	<img id="radp2" src="img/MapPeople.png" >
+	<img id="radp3" src="img/MapPeople.png" >
+	<img id="radp4" src="img/Map0.png" >
+	<img id="radp5" src="img/Map0.png" >
+	<img id="radp6" src="img/Map0.png" >
+	<!--игрок и боты-->
+	<img id="radpl0" src="img/rplayer.png" >
+	<div id="radpl"></div>
+	
+	</body>
+</html>
