@@ -41,25 +41,25 @@
 				tx.executeSql("CREATE TABLE planet ("+planetsStats+")", [], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[0,0,"Mercury",230,Math.random()*360,0.17,0,0], null, null);
+				[0,0,"Меркурий",230,Math.random()*360,0.17,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[1,0,"Venus",450,Math.random()*360,0.13,0,0], null, null);
+				[1,0,"Венера",450,Math.random()*360,0.13,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[2,0,"Earth",600,Math.random()*360,0.1,0,0], null, null);
+				[2,0,"Земля",600,Math.random()*360,0.1,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[3,0,"Mars",900,Math.random()*360,0.09,0,0], null, null);
+				[3,0,"Марс",900,Math.random()*360,0.09,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[4,0,"Jupiter",1100,Math.random()*360,0.07,0,0], null, null);
+				[4,0,"Юпитер",1100,Math.random()*360,0.07,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[5,0,"Saturn",1500,Math.random()*360,0.05,0,0], null, null);
+				[5,0,"Сатурн",1500,Math.random()*360,0.05,0,0], null, null);
 				
 				tx.executeSql("INSERT INTO planet ("+planetsStats+") values(?,?,?,?,?,?,?,?)",
-				[6,0,"Neptune",1800,Math.random()*360,0.01,0,0], null, null);				
+				[6,0,"Нептун",1800,Math.random()*360,0.01,0,0], null, null);				
 		});
 	}
 	function Login() {
@@ -74,7 +74,7 @@
 <img src="images/1People.png" style="position: absolute; left: 0px; top: 0px; z-index: 0;" width="100%" height="100%">
 <table border=0 width=283 height=210 background="images/form.png" id="form">
 	<tr>
-		<td><center>Enter nickname:<br><input type="text" id="nickname"><br><img src="images/ok0.png" id="enterbut" 
+		<td><center>Введите ник:<br><input type="text" id="nickname"><br><img src="images/ok0.png" id="enterbut" 
 		onmouseover="light();" onmouseout="shadow();" onclick="Login();"></center></td>
 	</tr>
 </table>
