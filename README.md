@@ -26,8 +26,8 @@ Few versions of game launcher were created:
 - launcher with js code in external files [index-ext-js.html](https://alexuslab.com/space-travel-game/space-travel/index-ext-js.html)
 
 Additonal development tools were created:
-- [Model animation viewer](https://alexuslab.com/space-travel-game/model-viewer.html)
-- [Orbit calculator](https://alexuslab.com/space-travel-game/orbit-calculator.html)
+- [Model animation viewer](https://alexuslab.com/space-travel-game/space-travel/model-viewer.html)
+- [Orbit calculator](https://alexuslab.com/space-travel-game/space-travel/orbit-calculator.html)
 
 
 ## Recoalition screenshots
