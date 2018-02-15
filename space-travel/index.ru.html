@@ -413,7 +413,7 @@
 		$("#test" ).html(img_to_load[loaded_count]);
 	},
 	all: function() {
-		$("#test" ).html("Loaded");
+		$("#test" ).html("Загрузка завершена");
 		//$("#progressbar" ).progressbar("destroy");
 		$("#start_button").css("visibility","visible");
 	}
@@ -427,19 +427,19 @@
 		$("#target_hp").text(hp+"/"+maxhp);
 		switch(rel) {
 			case 5:
-				rel="Perfect";
+				rel="Отличное";
 			break;
 			case 4:
-				rel="Good";
+				rel="Хорошее";
 			break;
 			case 3:
-				rel="Normal";
+				rel="Норамальное";
 			break;
 			case 2:
-				rel="Warried";
+				rel="Напряжённое";
 			break;
 			case 1:
-				rel="Enemy";
+				rel="Враждебное";
 			break;
 		}		
 		$("#target_rel").html(rel);
@@ -605,23 +605,22 @@
 		<tr><td id="hcontent">
 		<!--История игры-->
 		<center>
-		<textarea cols="65" rows="20" id='harea' readonly>
-In the year 2300, mankind colonized the nearest 7 star systems in two sectors. First occasional contacts with the Faeians and the Children of Gaal occurred, but for various reasons active relationships with neither the first nor the second were developed. More recently, mankind has finally managed to end the planetary and interplanetary wars and learn to live in peace. Unfortunately, space piracy and organized crime still terrorize the united humanity.
+		<textarea cols="65" rows="20" id='harea' readonly>  2300 год человечество освоило ближайшие пригодные 7 звёздных систем в двух секторах, произошли первые случайные контакты с Фаэянами и Детьми Гаала, однако по различным причинам ни с первыми ни со вторыми активные взаимоотношения не сложились. Совсем недавно человечеству удалось наконец покончить с планетарными и межпланетными войнами и научиться жить в мире. К сожалению космическое пиратство и организованную преступность пока победить объединённому человечеству не удалось.
 
-The last major problem humanity has become TravelOrs invaded the human space 17 years ago. During the last years they successfully one by one occupied humanity systems. The attempt to establish contact with them failed, their communication systems were so strongly encoded and protected that it was impossible to deliver message.
+Последней крупной проблемой человечество стали ТравелОры вторгшиеся в пространство людей 17 лет назад и успешно одна за одной в течении последних лет окупировавших системы людей. Попытка вступить с ними в контакт провалилась, их система связи была столь сильно закодирована и защищена , что внедрить в неё своё сообщение не представлялось возможным.
 
-Just once the United Space Fleet of Humanity managed to meet the Travelers in a full-scale space battle, and at the moment of the highest triumph, when it was believed that the fleet of Travelers was defeated and Denebola would go down in history as a place of great victory, main forces of TravelOrs entered the battle. Human fleet was defeated in a couple of hours and while retreating humans lost two more systems.
+Всего 1ин раз Объединённому Космическому Флоту Человечества удалось вступить в ТравелОрами в полномаштабное космическое сражение, и в момент наивысшего триумфа, когда считалось что флот ТравелОров разбит и Денебола войдёт в историю как место великой победы, в систему вошли основные силы ТравелОров, флот человечества был разбит всего за пару часов и отступая люди потеряли ещё две системы.
 
-The situation became threatening, as from 7 original systems, humanity controlled only 3 in their original sector. They were completely alone with Travelers, a narrow channel of communication with the Faeyans and the Children of Gaal was blocked. Riots and demonstrations swept the worlds demanding the resignation of their governments that had allowed such a defeat. At this moment of weakness, TravelOr’s second largest attack on human systems started. After a month of heavy fighting, the remnants of the United Human Fleet retreated to Solar System. Humans returned to their home world and stood on the brink of complete destruction by an unknown enemy.
+Ситуация стала угрожающей из 7 систем люди контролировали только 3 в своём родном секторе. Они были полностью наедине с ТравелОрами, узкий канал связи с Фаэянами и Детьми Гаала был перекрыт. Беспорядки и демонстрации прокатились по планетым требуя отставок своих правительств допустивших разгром. В этот момент слабости произошла вторая крупнейшая атака ТравелорОв на системы людей. После месяца тяжелых боёв остатки Объединённого Флота Человечества отступили в Солнечную Систему. Люди вернулись в свою колбель и они стояли на грани поражения от неизвестного врага.
 
-For defense of solar system, recruitment into civil service of Rangers started. Volunteer pilots whose sole order was: "Fight and save mankind in any way."			
+Для обороны Солнечной Системы был объевлен набор в ряды Рейнджеров , пилотов добровольцев чьим единственным приказом стало: "Бороться и спасти человечество любым путём".
 		</textarea><br>
-		Your name:<input type="text" id="player_name">Remember?<input type="checkbox" id="remember">
+		Ваше имя:<input type="text" id="player_name">Запомнить?<input type="checkbox" id="remember">
 		</center>
 		
 		<!--Конец истории-->
 		</td></tr>
-		<tr><td><center><div id="start_button" onclick='Enter();'></div>Auto-enter?<input type="checkbox" id="auto"></center></td></tr>
+		<tr><td><center><div id="start_button" onclick='Enter();'></div>Автовход?<input type="checkbox" id="auto"></center></td></tr>
 		</table>
 		</center>
 		</td></tr>
@@ -635,10 +634,10 @@ For defense of solar system, recruitment into civil service of Rangers started. 
 	</table>	
 		<div id="target">		
 		<table border=0>
-		<tr><td colspan=2></td><b><div id="target_name">Dionis Trader</div></b></tr>
-		<tr><td>Speed:</td><td><div id="target_speed">200</div></td></tr>
-		<tr><td>Hull:</td><td><div id="target_hp">300/300</div></td></tr>
-		<tr><td>Relation:</td><td><div id="target_rel">Perfect</div></td></tr>
+		<tr><td colspan=2></td><b><div id="target_name">Торговец Дайнис</div></b></tr>
+		<tr><td>Скорость:</td><td><div id="target_speed">200</div></td></tr>
+		<tr><td>Структура:</td><td><div id="target_hp">300/300</div></td></tr>
+		<tr><td>Отношение:</td><td><div id="target_rel">Отличное</div></td></tr>
 		</table>
 		</div>
 		

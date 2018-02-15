@@ -1,54 +1,54 @@
 var tnames=new Array(
-			"Торговец Дайнис",
-			"Торговец Авелий",
-			"Торговец Бен",
-			"Торговец Виталя",
-			"Торговец Генацвали",
-			"Торговец Дарий",
-			"Торговец Евдоким",
-			"Торговец Жанна",
-			"Торговец Залётный",
-			"Торговец Икая",
-			"Торговец Ярмола",
-			"Торговец Тиккирей",
-			"Торговец Лопух"
+			"Trader Dionis",
+			"Trader Avely",
+			"Trader Ben",
+			"Trader Vitaly",
+			"Trader Gene",
+			"Trader Dary",
+			"Trader Evdokim",
+			"Trader Janna",
+			"Trader Zaletny",
+			"Trader Ikaya",
+			"Trader Yarmola",
+			"Trader Tikkery",
+			"Trader Lol"
 		);
 		var dnames=new Array(
-			"Дипломат Августин",
-			"Дипломат Борда",
-			"Дипломат Вселенной",
-			"Дипломат Грибоедов",
-			"Дипломат Данайцев",
-			"Дипломат Европа",
-			"Дипломат Союз",
-			"Дипломат Будущего",
-			"Дипломат Пришельцев",
-			"Дипломат Хомо",
-			"Дипломат Якиман"
+			"Diplomat Augustin",
+			"Diplomat Borda",
+			"Diplomat Universe",
+			"Diplomat Griboedov",
+			"Diplomat Troyan",
+			"Diplomat Europe",
+			"Diplomat Union",
+			"Diplomat Future",
+			"Diplomat Alien",
+			"Diplomat Homo",
+			"Diplomat Yakiman"
 		);
 		var bnames=new Array(
-			"Форпост",
-			"Мир 31",
-			"Вавилон",
-			"Глубокий Космос 1",
-			"Победа"
+			"Outpost",
+			"MIR 31",
+			"Babylon",
+			"Deep Space 1",
+			"Victory"
 		);
 		var base_texts={
 			"gov":[
-			"Ты %player% находишься на космической базе %base%. Отсюда мы координируем как флотские операции, так и следим за рейнджерами. Что тебя сюда привело?",
-			"База %base% важнейший рубеж обороны на пути ТравелОров %player%! Чем мы можем тебе помочь?",
-			"Эх %player% ты пока зелёный новичок, но буду откровенен, ситуация та ещё. Если такие как ты не переломят ход войны то ветеранами вам не быть."
+			"You %player% are at starbase %base%. From here we coordinate our fleet ops and track activities of rangers. How can I help uou?",
+			"The base %base% in our major defence line against TravelOrs %player%! How can we assist you?",
+			"You %player% just a new recrut, but let me be honest, this is a shitty situation. If guys like you won't change course of the war you'd never be a veteran."
 			],
 			"task":[
-			"К сожалению %player% пока не установлены правила по поручению рейнджерам заданий. Но не волнуйтесь, совсем скоро мы с этим разберёмся и завалим вас заданиями."
+				"Sorry %player% but we don't have any missions for rangers yet. But don't worry we will overload you really soon."
 			]
 		};
 		var base_answ={
 			"gov":[
-			"<a href='#' onclick='GetTask();'>Для меня есть задание?</a><br><a href='#' onclick='Esc();'>Мне нужен ремонт</a><br><a href='#' onclick='Esc();'>Пока</a>"
+			"<a href='#' onclick='GetTask();'>Do you have a mission for me?</a><br><a href='#' onclick='Esc();'>I need to repair my ship</a><br><a href='#' onclick='Esc();'>Buy</a>"
 			],
 			"task":[
-			"<a href='#' onclick='Esc();'>Мне нужен ремонт</a><br><a href='#' onclick='Esc();'>Пока</a>"
+			"<a href='#' onclick='Esc();'>I need to repair my ship</a><br><a href='#' onclick='Esc();'>Buy</a>"
 			]
 		}
 		var pl_names=new Array(
